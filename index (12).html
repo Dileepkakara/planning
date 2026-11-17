@@ -1,0 +1,3574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="PlanWise AI - Smart Building Planning, Vastu-Aware Design, Cost Optimization and Environmental Assessment"
+    >
+
+    <title>PlanWise AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🏠
+            </div>
+
+            <div class="brand-text">
+
+                <h1>PlanWise AI</h1>
+
+                <span>
+                    Smart Building Planner
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="main-navigation">
+
+            <p class="nav-title">
+                MAIN
+            </p>
+
+            <button
+                class="nav-item active"
+                data-page="dashboard"
+                type="button"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="project-input"
+                type="button"
+            >
+                <span class="nav-icon">＋</span>
+                <span>Project Input</span>
+            </button>
+
+
+            <p class="nav-title">
+                DESIGN
+            </p>
+
+
+            <button
+                class="nav-item"
+                data-page="cad-floor-plan"
+                type="button"
+            >
+                <span class="nav-icon">▦</span>
+                <span>CAD Floor Plan</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="elevation"
+                type="button"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>3D Elevation</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="alternative-plans"
+                type="button"
+            >
+                <span class="nav-icon">◫</span>
+                <span>Alternative Plans</span>
+            </button>
+
+
+            <p class="nav-title">
+                ANALYSIS
+            </p>
+
+
+            <button
+                class="nav-item"
+                data-page="cost"
+                type="button"
+            >
+                <span class="nav-icon">₹</span>
+                <span>Cost Estimation</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="environment"
+                type="button"
+            >
+                <span class="nav-icon">♧</span>
+                <span>Environmental Impact</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="optimization"
+                type="button"
+            >
+                <span class="nav-icon">⚙</span>
+                <span>Optimization</span>
+            </button>
+
+
+            <p class="nav-title">
+                OUTPUT
+            </p>
+
+
+            <button
+                class="nav-item"
+                data-page="results"
+                type="button"
+            >
+                <span class="nav-icon">▥</span>
+                <span>Results</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="reports"
+                type="button"
+            >
+                <span class="nav-icon">▤</span>
+                <span>Reports</span>
+            </button>
+
+
+            <p class="nav-title">
+                PROJECT
+            </p>
+
+
+            <button
+                class="nav-item"
+                data-page="saved-projects"
+                type="button"
+            >
+                <span class="nav-icon">▣</span>
+                <span>Saved Projects</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="settings"
+                type="button"
+            >
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="student-profile">
+
+                <div class="profile-avatar">
+                    M
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Student
+                    </strong>
+
+                    <span>
+                        PlanWise User
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN APPLICATION
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Open menu"
+                >
+                    ☰
+                </button>
+
+
+                <div>
+
+                    <p class="breadcrumb">
+                        PlanWise AI
+                    </p>
+
+                    <h2 id="pageTitle">
+                        Dashboard
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button
+                    class="topbar-button"
+                    type="button"
+                    id="notificationButton"
+                    aria-label="Notifications"
+                >
+                    🔔
+                </button>
+
+
+                <div class="topbar-profile">
+
+                    <div class="profile-avatar small">
+                        M
+                    </div>
+
+                    <div class="top-profile-text">
+
+                        <strong>
+                            Student
+                        </strong>
+
+                        <span>
+                            Building Planner
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             PAGE CONTAINER
+             ===================================================== -->
+
+        <section
+            class="page-container"
+            id="pageContainer"
+        >
+
+
+
+            <!-- =================================================
+                 DASHBOARD
+                 ================================================= -->
+
+            <section
+                class="page active"
+                id="page-dashboard"
+                data-page-content="dashboard"
+            >
+
+                <div class="welcome-section">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            SMART BUILDING PLANNING
+                        </p>
+
+                        <h1>
+                            Welcome to
+                            <span>PlanWise AI</span>
+                        </h1>
+
+                        <p class="welcome-description">
+                            Plan, evaluate and optimize your building
+                            project using intelligent planning tools.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        id="startProjectButton"
+                        type="button"
+                        data-go-to="project-input"
+                    >
+                        + Start New Project
+                    </button>
+
+                </div>
+
+
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-card">
+
+                        <div class="card-icon blue">
+                            📐
+                        </div>
+
+                        <div>
+                            <span>CAD Planning</span>
+                            <strong>Ready</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <div class="card-icon green">
+                            🏠
+                        </div>
+
+                        <div>
+                            <span>3D Elevation</span>
+                            <strong>Ready</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <div class="card-icon orange">
+                            ₹
+                        </div>
+
+                        <div>
+                            <span>Cost Analysis</span>
+                            <strong>Ready</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <div class="card-icon purple">
+                            🌱
+                        </div>
+
+                        <div>
+                            <span>Sustainability</span>
+                            <strong>Ready</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="content-card workflow-card">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                WORKFLOW
+                            </p>
+
+                            <h2>
+                                Your Building Journey
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow">
+
+                        <div class="workflow-step active">
+
+                            <div class="workflow-number">
+                                1
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Project Input
+                                </strong>
+
+                                <span>
+                                    Enter site and building requirements
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="workflow-line"></div>
+
+
+                        <div class="workflow-step">
+
+                            <div class="workflow-number">
+                                2
+                            </div>
+
+                            <div>
+                                <strong>
+                                    CAD Floor Plan
+                                </strong>
+
+                                <span>
+                                    Generate an architectural plan
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="workflow-line"></div>
+
+
+                        <div class="workflow-step">
+
+                            <div class="workflow-number">
+                                3
+                            </div>
+
+                            <div>
+                                <strong>
+                                    3D Elevation
+                                </strong>
+
+                                <span>
+                                    Visualize the building
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="workflow-line"></div>
+
+
+                        <div class="workflow-step">
+
+                            <div class="workflow-number">
+                                4
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Analysis
+                                </strong>
+
+                                <span>
+                                    Cost and environmental assessment
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="workflow-line"></div>
+
+
+                        <div class="workflow-step">
+
+                            <div class="workflow-number">
+                                5
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Optimization
+                                </strong>
+
+                                <span>
+                                    Compare design alternatives
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="content-grid-two">
+
+                    <div class="content-card">
+
+                        <div class="section-heading">
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    PROJECT
+                                </p>
+
+                                <h2>
+                                    Start your first project
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <p class="card-description">
+                            Enter your plot dimensions, building
+                            requirements, Vastu preferences and budget
+                            to begin.
+                        </p>
+
+
+                        <button
+                            class="secondary-button"
+                            type="button"
+                            data-go-to="project-input"
+                        >
+                            Create Project →
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="content-card">
+
+                        <div class="section-heading">
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    PROJECT FEATURES
+                                </p>
+
+                                <h2>
+                                    What PlanWise AI will provide
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <ul class="feature-list">
+
+                            <li>
+                                <span>✓</span>
+                                Vastu-aware planning
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                CAD-style floor plans
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Pooja Gadhi planning
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                3D architectural elevation
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Construction cost estimation
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Environmental assessment
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <!-- PROJECT INPUT ACTION BUTTONS -->
+<div class="project-input-actions">
+
+    <button
+        type="button"
+        id="resetProjectForm"
+        class="btn-secondary">
+        Reset
+    </button>
+
+    <button
+    type="button"
+    id="continueToCADBtn"
+    class="btn-primary"
+    onclick="openCADFromProjectInput()">
+    Continue to CAD Floor Plan →
+</button>
+
+</div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PHASE 2
+                 PROJECT INPUT
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-project-input"
+                data-page-content="project-input"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            PHASE 2
+                        </p>
+
+                        <h1>
+                            Project Input
+                        </h1>
+
+                        <p>
+                            Enter your site, building, room,
+                            Vastu and sustainability requirements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FORM MESSAGE -->
+
+                <div
+                    id="projectFormMessage"
+                    class="form-message"
+                ></div>
+
+
+
+                <form
+                    id="projectForm"
+                    class="project-form"
+                >
+
+
+                    <!-- =========================================
+                         PROJECT INFORMATION
+                         ========================================= -->
+
+                    <div class="form-card">
+
+                        <div class="form-card-header">
+
+                            <div class="form-section-icon">
+                                📋
+                            </div>
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    PROJECT
+                                </p>
+
+                                <h2>
+                                    Project Information
+                                </h2>
+
+                                <p>
+                                    Basic information about your
+                                    building project.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="projectName">
+                                    Project Name *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="projectName"
+                                    name="projectName"
+                                    placeholder="Example: My Dream House"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="projectLocation">
+                                    Location *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="projectLocation"
+                                    name="projectLocation"
+                                    placeholder="Example: Visakhapatnam"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <div class="form-group full-width">
+
+                                <label for="projectDescription">
+                                    Project Description
+                                </label>
+
+                                <textarea
+                                    id="projectDescription"
+                                    name="projectDescription"
+                                    placeholder="Describe your building requirements..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                   <!-- =========================================
+     SITE INFORMATION
+     ========================================= -->
+
+<div class="form-card">
+
+    <div class="form-card-header">
+
+        <div class="form-section-icon">
+            📐
+        </div>
+
+        <div>
+
+            <p class="eyebrow">
+                SITE
+            </p>
+
+            <h2>
+                Site Information
+            </h2>
+
+            <p>
+                Enter the plot dimensions using the unit
+                you normally use.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-grid">
+
+
+        <!-- MEASUREMENT UNIT -->
+
+        <div class="form-group full-width">
+
+            <label for="measurementUnit">
+                Measurement Unit *
+            </label>
+
+            <select
+                id="measurementUnit"
+                name="measurementUnit"
+            >
+
+                <option value="m">
+                    Metres (m)
+                </option>
+
+                <option value="ft">
+                    Feet (ft)
+                </option>
+
+                <option value="ft-in">
+                    Feet + Inches
+                </option>
+
+                <option value="yd">
+                    Yards (yd)
+                </option>
+
+                <option value="cm">
+                    Centimetres (cm)
+                </option>
+
+                <option value="in">
+                    Inches (in)
+                </option>
+
+            </select>
+
+            <small class="input-help">
+                Choose the unit you normally use for your
+                site measurements.
+            </small>
+
+        </div>
+
+
+
+        <!-- PLOT LENGTH -->
+
+        <div class="form-group">
+
+            <label for="plotLength">
+                Plot Length *
+            </label>
+
+            <div class="input-with-unit">
+
+                <input
+                    type="number"
+                    id="plotLength"
+                    name="plotLength"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="40"
+                    required
+                >
+
+                <span id="plotLengthUnit">
+                    m
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PLOT WIDTH -->
+
+        <div class="form-group">
+
+            <label for="plotWidth">
+                Plot Width *
+            </label>
+
+            <div class="input-with-unit">
+
+                <input
+                    type="number"
+                    id="plotWidth"
+                    name="plotWidth"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="30"
+                    required
+                >
+
+                <span id="plotWidthUnit">
+                    m
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FEET + INCHES EXTRA INPUTS -->
+
+        <div
+            class="feet-inches-row full-width"
+            id="feetInchesInputs"
+            style="display:none;"
+        >
+
+            <div class="feet-inches-title">
+                Feet + Inches
+            </div>
+
+
+            <div class="feet-inches-group">
+
+                <label for="plotLengthFeet">
+                    Length - Feet
+                </label>
+
+                <input
+                    type="number"
+                    id="plotLengthFeet"
+                    min="0"
+                    step="1"
+                    placeholder="40"
+                >
+
+            </div>
+
+
+            <div class="feet-inches-group">
+
+                <label for="plotLengthInches">
+                    Length - Inches
+                </label>
+
+                <input
+                    type="number"
+                    id="plotLengthInches"
+                    min="0"
+                    max="11.99"
+                    step="0.01"
+                    placeholder="0"
+                >
+
+            </div>
+
+
+            <div class="feet-inches-group">
+
+                <label for="plotWidthFeet">
+                    Width - Feet
+                </label>
+
+                <input
+                    type="number"
+                    id="plotWidthFeet"
+                    min="0"
+                    step="1"
+                    placeholder="30"
+                >
+
+            </div>
+
+
+            <div class="feet-inches-group">
+
+                <label for="plotWidthInches">
+                    Width - Inches
+                </label>
+
+                <input
+                    type="number"
+                    id="plotWidthInches"
+                    min="0"
+                    max="11.99"
+                    step="0.01"
+                    placeholder="0"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CALCULATED AREA -->
+
+        <div class="form-group">
+
+            <label>
+                Calculated Site Area
+            </label>
+
+            <div
+                class="calculated-value"
+                id="siteAreaDisplay"
+            >
+                0 m²
+            </div>
+
+        </div>
+
+
+
+        <!-- INTERNAL METRIC VALUE -->
+
+        <div class="form-group">
+
+            <label>
+                Internal CAD Dimension
+            </label>
+
+            <div
+                class="calculated-value"
+                id="metricDimensionsDisplay"
+            >
+                0 m × 0 m
+            </div>
+
+            <small class="input-help">
+                PlanWise AI uses metres internally for
+                CAD and engineering calculations.
+            </small>
+
+        </div>
+
+
+
+        <!-- DISPLAY UNIT -->
+
+        <div class="form-group">
+
+            <label for="displayUnit">
+                Display Dimensions As
+            </label>
+
+            <select
+                id="displayUnit"
+                name="displayUnit"
+            >
+
+                <option value="same">
+                    Same as Input
+                </option>
+
+                <option value="m">
+                    Metres (m)
+                </option>
+
+                <option value="ft">
+                    Feet (ft)
+                </option>
+
+                <option value="ft-in">
+                    Feet + Inches
+                </option>
+
+                <option value="yd">
+                    Yards (yd)
+                </option>
+
+                <option value="cm">
+                    Centimetres (cm)
+                </option>
+
+                <option value="in">
+                    Inches (in)
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- PLOT SHAPE -->
+
+        <div class="form-group">
+
+            <label for="plotShape">
+                Plot Shape
+            </label>
+
+            <select
+                id="plotShape"
+                name="plotShape"
+            >
+
+                <option value="rectangle">
+                    Rectangle
+                </option>
+
+                <option value="square">
+                    Square
+                </option>
+
+                <option value="irregular">
+                    Irregular
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ROAD DIRECTION -->
+
+        <div class="form-group">
+
+            <label for="roadDirection">
+                Road Direction
+            </label>
+
+            <select
+                id="roadDirection"
+                name="roadDirection"
+            >
+
+                <option value="east">
+                    East
+                </option>
+
+                <option value="west">
+                    West
+                </option>
+
+                <option value="north">
+                    North
+                </option>
+
+                <option value="south">
+                    South
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- NORTH DIRECTION -->
+
+        <div class="form-group">
+
+            <label for="northDirection">
+                North Direction
+            </label>
+
+            <select
+                id="northDirection"
+                name="northDirection"
+            >
+
+                <option value="top">
+                    Top / North
+                </option>
+
+                <option value="right">
+                    Right
+                </option>
+
+                <option value="bottom">
+                    Bottom
+                </option>
+
+                <option value="left">
+                    Left
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+                    <!-- =========================================
+                         BUILDING REQUIREMENTS
+                         ========================================= -->
+
+                    <div class="form-card">
+
+                        <div class="form-card-header">
+
+                            <div class="form-section-icon">
+                                🏠
+                            </div>
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    BUILDING
+                                </p>
+
+                                <h2>
+                                    Building Requirements
+                                </h2>
+
+                                <p>
+                                    Define the basic building
+                                    requirements.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="buildingType">
+                                    Building Type *
+                                </label>
+
+                                <select
+                                    id="buildingType"
+                                    name="buildingType"
+                                    required
+                                >
+
+                                    <option value="residential">
+                                        Residential
+                                    </option>
+
+                                    <option value="commercial">
+                                        Commercial
+                                    </option>
+
+                                    <option value="mixed">
+                                        Mixed Use
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="numberOfFloors">
+                                    Number of Floors *
+                                </label>
+
+                                <select
+                                    id="numberOfFloors"
+                                    name="numberOfFloors"
+                                    required
+                                >
+
+                                    <option value="G">
+                                        Ground Floor
+                                    </option>
+
+                                    <option value="G+1" selected>
+                                        G + 1
+                                    </option>
+
+                                    <option value="G+2">
+                                        G + 2
+                                    </option>
+
+                                    <option value="G+3">
+                                        G + 3
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="bedrooms">
+                                    Bedrooms
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="bedrooms"
+                                    name="bedrooms"
+                                    min="0"
+                                    max="20"
+                                    value="3"
+                                >
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="bathrooms">
+                                    Bathrooms
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="bathrooms"
+                                    name="bathrooms"
+                                    min="0"
+                                    max="20"
+                                    value="2"
+                                >
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="parkingSpaces">
+                                    Parking
+                                </label>
+
+                                <select
+                                    id="parkingSpaces"
+                                    name="parkingSpaces"
+                                >
+
+                                    <option value="0">
+                                        No Parking
+                                    </option>
+
+                                    <option value="1" selected>
+                                        1 Car
+                                    </option>
+
+                                    <option value="2">
+                                        2 Cars
+                                    </option>
+
+                                    <option value="3">
+                                        3 Cars
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="designStyle">
+                                    Design Style
+                                </label>
+
+                                <select
+                                    id="designStyle"
+                                    name="designStyle"
+                                >
+
+                                    <option value="modern">
+                                        Modern
+                                    </option>
+
+                                    <option value="contemporary">
+                                        Contemporary
+                                    </option>
+
+                                    <option value="traditional">
+                                        Traditional
+                                    </option>
+
+                                    <option value="luxury">
+                                        Luxury
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         ROOM REQUIREMENTS
+                         ========================================= -->
+
+                    <div class="form-card">
+
+                        <div class="form-card-header">
+
+                            <div class="form-section-icon">
+                                🚪
+                            </div>
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    ROOMS
+                                </p>
+
+                                <h2>
+                                    Room Requirements
+                                </h2>
+
+                                <p>
+                                    Select the spaces required in
+                                    your building.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="room-selection-grid">
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="living-room"
+                                    checked
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Living Room
+                                    </strong>
+
+                                    <small>
+                                        Main family space
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="dining-room"
+                                    checked
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Dining Room
+                                    </strong>
+
+                                    <small>
+                                        Dining area
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="kitchen"
+                                    checked
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Kitchen
+                                    </strong>
+
+                                    <small>
+                                        Cooking area
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="master-bedroom"
+                                    checked
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Master Bedroom
+                                    </strong>
+
+                                    <small>
+                                        Main bedroom
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="bedroom-2"
+                                    checked
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Bedroom 2
+                                    </strong>
+
+                                    <small>
+                                        Additional bedroom
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="bedroom-3"
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Bedroom 3
+                                    </strong>
+
+                                    <small>
+                                        Additional bedroom
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="study-room"
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Study Room
+                                    </strong>
+
+                                    <small>
+                                        Work or study space
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="room-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="utility-room"
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        Utility Room
+                                    </strong>
+
+                                    <small>
+                                        Utility/service space
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <!-- POOJA GADHI -->
+
+                            <label class="room-option special-room">
+
+                                <input
+                                    type="checkbox"
+                                    name="rooms"
+                                    value="pooja-gadhi"
+                                    checked
+                                >
+
+                                <span class="room-check">
+                                    ✓
+                                </span>
+
+                                <span class="room-information">
+
+                                    <strong>
+                                        🛕 Pooja Gadhi
+                                    </strong>
+
+                                    <small>
+                                        Dedicated prayer room
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         VASTU
+                         ========================================= -->
+
+                    <div class="form-card vastu-card">
+
+                        <div class="form-card-header">
+
+                            <div class="form-section-icon vastu-icon">
+                                🧭
+                            </div>
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    VASTU
+                                </p>
+
+                                <h2>
+                                    Vastu Planning
+                                </h2>
+
+                                <p>
+                                    Configure traditional Vastu-based
+                                    room placement preferences.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="vastu-toggle-box">
+
+                            <div>
+
+                                <strong>
+                                    Enable Vastu Planning
+                                </strong>
+
+                                <p>
+                                    Use Vastu preferences while
+                                    preparing the CAD floor plan.
+                                </p>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="vastuEnabled"
+                                    name="vastuEnabled"
+                                    checked
+                                >
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+
+                        <div
+                            class="vastu-options"
+                            id="vastuOptions"
+                        >
+
+                            <div class="form-grid">
+
+
+                                <div class="form-group">
+
+                                    <label for="vastuEntrance">
+                                        Main Entrance
+                                    </label>
+
+                                    <select
+                                        id="vastuEntrance"
+                                        name="vastuEntrance"
+                                    >
+
+                                        <option value="auto">
+                                            Auto according to Vastu
+                                        </option>
+
+                                        <option value="north">
+                                            North
+                                        </option>
+
+                                        <option value="east">
+                                            East
+                                        </option>
+
+                                        <option value="west">
+                                            West
+                                        </option>
+
+                                        <option value="south">
+                                            South
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="vastuKitchen">
+                                        Kitchen
+                                    </label>
+
+                                    <select
+                                        id="vastuKitchen"
+                                        name="vastuKitchen"
+                                    >
+
+                                        <option value="auto">
+                                            Auto according to Vastu
+                                        </option>
+
+                                        <option value="southeast">
+                                            South-East
+                                        </option>
+
+                                        <option value="northwest">
+                                            North-West
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="vastuMasterBedroom">
+                                        Master Bedroom
+                                    </label>
+
+                                    <select
+                                        id="vastuMasterBedroom"
+                                        name="vastuMasterBedroom"
+                                    >
+
+                                        <option value="auto">
+                                            Auto according to Vastu
+                                        </option>
+
+                                        <option value="southwest">
+                                            South-West
+                                        </option>
+
+                                        <option value="west">
+                                            West
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="vastuPooja">
+                                        Pooja Gadhi
+                                    </label>
+
+                                    <select
+                                        id="vastuPooja"
+                                        name="vastuPooja"
+                                    >
+
+                                        <option value="auto">
+                                            Auto according to Vastu
+                                        </option>
+
+                                        <option value="northeast">
+                                            North-East
+                                        </option>
+
+                                        <option value="north">
+                                            North
+                                        </option>
+
+                                        <option value="east">
+                                            East
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="vastuStaircase">
+                                        Staircase
+                                    </label>
+
+                                    <select
+                                        id="vastuStaircase"
+                                        name="vastuStaircase"
+                                    >
+
+                                        <option value="auto">
+                                            Auto according to Vastu
+                                        </option>
+
+                                        <option value="south">
+                                            South
+                                        </option>
+
+                                        <option value="west">
+                                            West
+                                        </option>
+
+                                        <option value="southwest">
+                                            South-West
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="vastuToilet">
+                                        Toilet
+                                    </label>
+
+                                    <select
+                                        id="vastuToilet"
+                                        name="vastuToilet"
+                                    >
+
+                                        <option value="auto">
+                                            Auto according to Vastu
+                                        </option>
+
+                                        <option value="northwest">
+                                            North-West
+                                        </option>
+
+                                        <option value="west">
+                                            West
+                                        </option>
+
+                                        <option value="southeast">
+                                            South-East
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         BUDGET
+                         ========================================= -->
+
+                    <div class="form-card">
+
+                        <div class="form-card-header">
+
+                            <div class="form-section-icon">
+                                ₹
+                            </div>
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    COST
+                                </p>
+
+                                <h2>
+                                    Construction Budget
+                                </h2>
+
+                                <p>
+                                    Set the approximate construction
+                                    budget.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="constructionBudget">
+                                    Budget
+                                </label>
+
+                                <div class="input-with-unit currency-input">
+
+                                    <span>
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        id="constructionBudget"
+                                        name="constructionBudget"
+                                        min="0"
+                                        step="10000"
+                                        placeholder="4000000"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="constructionQuality">
+                                    Construction Quality
+                                </label>
+
+                                <select
+                                    id="constructionQuality"
+                                    name="constructionQuality"
+                                >
+
+                                    <option value="economy">
+                                        Economy
+                                    </option>
+
+                                    <option value="standard" selected>
+                                        Standard
+                                    </option>
+
+                                    <option value="premium">
+                                        Premium
+                                    </option>
+
+                                    <option value="luxury">
+                                        Luxury
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         SUSTAINABILITY
+                         ========================================= -->
+
+                    <div class="form-card">
+
+                        <div class="form-card-header">
+
+                            <div class="form-section-icon">
+                                🌱
+                            </div>
+
+                            <div>
+
+                                <p class="eyebrow">
+                                    SUSTAINABILITY
+                                </p>
+
+                                <h2>
+                                    Environmental Requirements
+                                </h2>
+
+                                <p>
+                                    Select sustainable building features.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="sustainability-grid">
+
+
+                            <label class="sustainability-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="sustainability"
+                                    value="natural-light"
+                                    checked
+                                >
+
+                                <span>
+                                    ☀️
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Natural Lighting
+                                    </strong>
+
+                                    <small>
+                                        Improve daylight usage
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+
+
+                            <label class="sustainability-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="sustainability"
+                                    value="natural-ventilation"
+                                    checked
+                                >
+
+                                <span>
+                                    🌬️
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Natural Ventilation
+                                    </strong>
+
+                                    <small>
+                                        Improve airflow
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+
+
+                            <label class="sustainability-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="sustainability"
+                                    value="rainwater"
+                                    checked
+                                >
+
+                                <span>
+                                    💧
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Rainwater Harvesting
+                                    </strong>
+
+                                    <small>
+                                        Reduce water demand
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+
+
+                            <label class="sustainability-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="sustainability"
+                                    value="solar"
+                                >
+
+                                <span>
+                                    ☀️
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Solar Energy
+                                    </strong>
+
+                                    <small>
+                                        Renewable electricity
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+
+
+                            <label class="sustainability-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="sustainability"
+                                    value="green-materials"
+                                >
+
+                                <span>
+                                    ♻️
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Green Materials
+                                    </strong>
+
+                                    <small>
+                                        Sustainable materials
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+
+
+                            <label class="sustainability-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="sustainability"
+                                    value="energy-efficiency"
+                                >
+
+                                <span>
+                                    ⚡
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Energy Efficiency
+                                    </strong>
+
+                                    <small>
+                                        Reduce energy consumption
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         FORM ACTIONS
+                         ========================================= -->
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="resetProjectFormSecondary"
+                        >
+                            Reset
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                            id="continueToCAD"
+                        >
+                            Continue to CAD Floor Plan →
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =========================================================
+     PHASE 3 - CAD FLOOR PLAN
+     ========================================================= -->
+
+<section
+    class="page"
+    id="page-cad-floor-plan"
+    data-page-content="cad-floor-plan"
+>
+
+    <div class="page-header">
+        <div>
+            <h1>📐 CAD Floor Plan</h1>
+            <p>
+                Create a professional CAD-style 2D floor plan
+                from your project requirements.
+            </p>
+        </div>
+
+        <div class="cad-header-actions">
+            <button class="cad-btn" id="cadZoomOut">−</button>
+            <button class="cad-btn" id="cadZoomReset">100%</button>
+            <button class="cad-btn" id="cadZoomIn">+</button>
+
+            <button class="cad-btn primary" id="cadPrintBtn">
+                🖨 Print
+            </button>
+        </div>
+    </div>
+
+
+    <!-- PROJECT INFORMATION BAR -->
+    <div class="cad-project-bar">
+
+        <div class="cad-info-item">
+            <span>Project</span>
+            <strong id="cadProjectName">My House</strong>
+        </div>
+
+        <div class="cad-info-item">
+            <span>Plot Size</span>
+            <strong id="cadPlotSize">--</strong>
+        </div>
+
+        <div class="cad-info-item">
+            <span>Unit</span>
+            <strong id="cadUnit">m</strong>
+        </div>
+
+        <div class="cad-info-item">
+            <span>Bedrooms</span>
+            <strong id="cadBedrooms">--</strong>
+        </div>
+
+        <div class="cad-info-item">
+            <span>Floors</span>
+            <strong id="cadFloors">--</strong>
+        </div>
+
+    </div>
+
+
+  <!-- =========================================================
+     PHASE 3 - CAD FLOOR PLAN WORKSPACE
+     ========================================================= -->
+
+<div class="cad-workspace">
+
+    <!-- =====================================================
+         LEFT CAD TOOLBAR
+         ===================================================== -->
+    <aside class="cad-toolbar">
+
+        <h3>CAD Tools</h3>
+
+        <button class="cad-tool active" data-cad-tool="select">
+            ↖ Select
+        </button>
+
+        <button class="cad-tool" data-cad-tool="wall">
+            ━ Wall
+        </button>
+
+        <button class="cad-tool" data-cad-tool="door">
+            ▤ Door
+        </button>
+
+        <button class="cad-tool" data-cad-tool="window">
+            ▭ Window
+        </button>
+
+        <button class="cad-tool" data-cad-tool="room">
+            □ Room
+        </button>
+
+        <button class="cad-tool" data-cad-tool="dimension">
+            ↔ Dimension
+        </button>
+
+        <button class="cad-tool" data-cad-tool="furniture">
+            ▱ Furniture
+        </button>
+
+        <hr>
+
+        <button class="cad-tool" id="fitCadPlan">
+            ⛶ Fit Plan
+        </button>
+
+        <button class="cad-tool" id="resetCadPlan">
+            ↻ Reset
+        </button>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CAD DRAWING AREA
+         ===================================================== -->
+    <section class="cad-main">
+
+        <!-- CAD HEADER -->
+        <div class="cad-header">
+
+            <div>
+                <strong>CAD FLOOR PLAN</strong>
+            </div>
+
+            <div class="cad-scale">
+                Scale: <strong>1:100</strong>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DRAWING BOARD
+             ================================================= -->
+        <div class="cad-board">
+
+            <!-- NORTH ARROW -->
+            <div class="north-arrow">
+                <div class="north-letter">N</div>
+                <div class="north-line"></div>
+                <div class="north-head">▲</div>
+            </div>
+
+
+            <!-- TOP DIMENSION -->
+            <div class="dimension dimension-top">
+
+                <span class="dimension-line"></span>
+
+                <span class="dimension-text">
+                    12.00 m
+                </span>
+
+            </div>
+
+
+            <!-- LEFT DIMENSION -->
+            <div class="dimension dimension-left">
+
+                <span class="dimension-line"></span>
+
+                <span class="dimension-text">
+                    18.00 m
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 CAD PLAN
+                 ================================================= -->
+            <div class="cad-plan" id="cadPlan">
+
+                <!-- OUTER PLOT WALL -->
+                <div class="cad-outer-wall">
+
+
+                    <!-- =========================================
+                         LIVING ROOM
+                         ========================================= -->
+                    <div
+                        class="cad-room living-room"
+                        data-room="living"
+                    >
+
+                        <div class="room-label">
+                            <strong>LIVING ROOM</strong>
+                            <span>4.0 m × 4.0 m</span>
+                        </div>
+
+
+                        <!-- SOFA -->
+                        <div class="furniture sofa">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+
+                        <!-- CENTER TABLE -->
+                        <div class="center-table"></div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         MASTER BEDROOM
+                         ========================================= -->
+                    <div
+                        class="cad-room master-bedroom"
+                        data-room="master-bedroom"
+                    >
+
+                        <div class="room-label">
+                            <strong>MASTER BEDROOM</strong>
+                            <span>4.0 m × 4.0 m</span>
+                        </div>
+
+
+                        <!-- BED -->
+                        <div class="bed">
+
+                            <div class="pillow"></div>
+                            <div class="pillow"></div>
+
+                            <div class="bed-body"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         BEDROOM 2
+                         ========================================= -->
+                    <div
+                        class="cad-room bedroom-2"
+                        data-room="bedroom-2"
+                    >
+
+                        <div class="room-label">
+
+                            <strong>BEDROOM 2</strong>
+
+                            <span>
+                                3.5 m × 3.5 m
+                            </span>
+
+                        </div>
+
+
+                        <div class="bed">
+
+                            <div class="pillow"></div>
+                            <div class="pillow"></div>
+
+                            <div class="bed-body"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         KITCHEN
+                         ========================================= -->
+                    <div
+                        class="cad-room kitchen"
+                        data-room="kitchen"
+                    >
+
+                        <div class="room-label">
+
+                            <strong>KITCHEN</strong>
+
+                            <span>
+                                3.0 m × 3.0 m
+                            </span>
+
+                        </div>
+
+
+                        <!-- KITCHEN PLATFORM -->
+                        <div class="kitchen-platform">
+
+                            <div class="sink">
+                                SINK
+                            </div>
+
+                            <div class="stove">
+                                ○ ○
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         DINING
+                         ========================================= -->
+                    <div
+                        class="cad-room dining"
+                        data-room="dining"
+                    >
+
+                        <div class="room-label">
+
+                            <strong>DINING</strong>
+
+                            <span>
+                                3.0 m × 3.0 m
+                            </span>
+
+                        </div>
+
+
+                        <!-- DINING TABLE -->
+                        <div class="dining-table">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         TOILET
+                         ========================================= -->
+                    <div
+                        class="cad-room toilet"
+                        data-room="toilet"
+                    >
+
+                        <div class="room-label">
+
+                            <strong>TOILET</strong>
+
+                            <span>
+                                1.5 m × 2.1 m
+                            </span>
+
+                        </div>
+
+
+                        <div class="toilet-fixture">
+                            WC
+                        </div>
+
+                        <div class="wash-basin">
+                            WB
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         POOJA GADHI
+                         ========================================= -->
+                    <div
+                        class="cad-room pooja-room"
+                        data-room="pooja"
+                    >
+
+                        <div class="room-label">
+
+                            <strong>POOJA GADHI</strong>
+
+                            <span>
+                                1.5 m × 1.5 m
+                            </span>
+
+                        </div>
+
+                        <div class="pooja-symbol">
+                            ॐ
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         STAIRCASE
+                         ========================================= -->
+                    <div
+                        class="cad-stair"
+                        data-room="stairs"
+                    >
+
+                        <div class="room-label">
+
+                            <strong>STAIR</strong>
+
+                        </div>
+
+
+                        <div class="stair-lines">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         PARKING
+                         ========================================= -->
+                    <div
+                        class="cad-parking"
+                        data-room="parking"
+                    >
+
+                        <div class="room-label">
+
+                            <strong>PARKING</strong>
+
+                            <span>
+                                3.0 m × 5.0 m
+                            </span>
+
+                        </div>
+
+
+                        <div class="car">
+
+                            <div class="car-window"></div>
+
+                            <div class="wheel wheel-1"></div>
+                            <div class="wheel wheel-2"></div>
+
+                            <div class="wheel wheel-3"></div>
+                            <div class="wheel wheel-4"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         DOORS
+                         ========================================= -->
+
+                    <div class="cad-door door-living">
+                        <span class="door-leaf"></span>
+                        <span class="door-arc"></span>
+                    </div>
+
+
+                    <div class="cad-door door-bedroom">
+                        <span class="door-leaf"></span>
+                        <span class="door-arc"></span>
+                    </div>
+
+
+                    <div class="cad-door door-kitchen">
+                        <span class="door-leaf"></span>
+                        <span class="door-arc"></span>
+                    </div>
+
+
+                    <div class="cad-door door-toilet">
+                        <span class="door-leaf"></span>
+                        <span class="door-arc"></span>
+                    </div>
+
+
+                    <!-- =========================================
+                         WINDOWS
+                         ========================================= -->
+
+                    <div class="cad-window window-top-1"></div>
+                    <div class="cad-window window-top-2"></div>
+
+                    <div class="cad-window window-left-1"></div>
+                    <div class="cad-window window-left-2"></div>
+
+                    <div class="cad-window window-right-1"></div>
+                    <div class="cad-window window-right-2"></div>
+
+                    <div class="cad-window window-bottom"></div>
+
+
+                </div>
+                <!-- END OUTER WALL -->
+
+
+                <!-- =============================================
+                     ROOM DIMENSIONS
+                     ============================================= -->
+
+                <div class="room-dimension dim-living">
+                    4.00 m
+                </div>
+
+                <div class="room-dimension dim-bedroom">
+                    4.00 m
+                </div>
+
+                <div class="room-dimension dim-kitchen">
+                    3.00 m
+                </div>
+
+
+            </div>
+            <!-- END CAD PLAN -->
+
+
+        </div>
+        <!-- END CAD BOARD -->
+
+
+        <!-- ================================================
+             CAD STATUS BAR
+             ================================================ -->
+
+        <div class="cad-status-bar">
+
+            <span>
+                <strong>CAD Mode</strong>
+            </span>
+
+            <span>
+                Grid: ON
+            </span>
+
+            <span>
+                Snap: ON
+            </span>
+
+            <span>
+                Units: metres
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RIGHT PLAN INFORMATION
+         ===================================================== -->
+    <aside class="cad-info-panel">
+
+        <h3>Plan Information</h3>
+
+
+        <div class="cad-info-item">
+
+            <span>Plot Length</span>
+
+            <strong id="cadPlotLength">
+                12.00 m
+            </strong>
+
+        </div>
+
+
+        <div class="cad-info-item">
+
+            <span>Plot Width</span>
+
+            <strong id="cadPlotWidth">
+                18.00 m
+            </strong>
+
+        </div>
+
+
+        <div class="cad-info-item">
+
+            <span>Plot Area</span>
+
+            <strong id="cadPlotArea">
+                216.00 m²
+            </strong>
+
+        </div>
+
+
+        <div class="cad-info-item">
+
+            <span>Built-up Area</span>
+
+            <strong id="cadBuiltArea">
+                138.24 m²
+            </strong>
+
+        </div>
+
+
+        <div class="cad-info-item">
+
+            <span>Bedrooms</span>
+
+            <strong id="cadBedroomsSecondary">
+                2
+            </strong>
+
+        </div>
+
+
+        <div class="cad-info-item">
+
+            <span>Parking</span>
+
+            <strong id="cadParking">
+                1
+            </strong>
+
+        </div>
+
+
+        <div class="cad-info-item">
+
+            <span>Pooja Gadhi</span>
+
+            <strong>
+                Enabled
+            </strong>
+
+        </div>
+
+
+        <div class="cad-info-item">
+
+            <span>Vastu</span>
+
+            <strong>
+                Enabled
+            </strong>
+
+        </div>
+
+
+        <!-- DRAWING LEGEND -->
+
+        <div class="cad-legend">
+
+            <h3>Drawing Legend</h3>
+
+            <div>
+                <span class="legend-wall"></span>
+                Wall
+            </div>
+
+            <div>
+                <span class="legend-door"></span>
+                Door
+            </div>
+
+            <div>
+                <span class="legend-window"></span>
+                Window
+            </div>
+
+            <div>
+                <span class="legend-room"></span>
+                Room
+            </div>
+
+            <div>
+                <span class="legend-dimension"></span>
+                Dimension
+            </div>
+
+        </div>
+
+    </aside>
+
+</div>
+
+<!-- =========================================================
+     END PHASE 3 CAD FLOOR PLAN WORKSPACE
+     ========================================================= -->
+
+</section>
+
+
+
+            <!-- =================================================
+                 3D ELEVATION
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-elevation"
+                data-page-content="elevation"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            DESIGN
+                        </p>
+
+                        <h1>
+                            3D Elevation
+                        </h1>
+
+                        <p>
+                            Revit/SketchUp-style architectural
+                            visualization workspace.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        🏠
+                    </div>
+
+                    <h2>
+                        3D Elevation
+                    </h2>
+
+                    <p>
+                        The 3D building model will be developed
+                        after the CAD floor plan.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ALTERNATIVE PLANS
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-alternative-plans"
+                data-page-content="alternative-plans"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            DESIGN
+                        </p>
+
+                        <h1>
+                            Alternative Plans
+                        </h1>
+
+                        <p>
+                            Compare different building design options.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        ◫
+                    </div>
+
+                    <h2>
+                        Alternative Plans
+                    </h2>
+
+                    <p>
+                        Alternative design generation will be
+                        connected after the main CAD planner.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 COST
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-cost"
+                data-page-content="cost"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            ANALYSIS
+                        </p>
+
+                        <h1>
+                            Cost Estimation
+                        </h1>
+
+                        <p>
+                            Estimate building quantities and
+                            construction costs.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        ₹
+                    </div>
+
+                    <h2>
+                        Cost Estimation
+                    </h2>
+
+                    <p>
+                        Cost calculation will be connected
+                        to the generated building plan.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ENVIRONMENT
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-environment"
+                data-page-content="environment"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            ANALYSIS
+                        </p>
+
+                        <h1>
+                            Environmental Impact
+                        </h1>
+
+                        <p>
+                            Evaluate sustainability and
+                            environmental performance.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        🌱
+                    </div>
+
+                    <h2>
+                        Environmental Impact
+                    </h2>
+
+                    <p>
+                        Environmental assessment will be
+                        connected to the building data.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 OPTIMIZATION
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-optimization"
+                data-page-content="optimization"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            ANALYSIS
+                        </p>
+
+                        <h1>
+                            Multi-Objective Optimization
+                        </h1>
+
+                        <p>
+                            Balance cost, comfort, sustainability
+                            and constructability.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        ⚙
+                    </div>
+
+                    <h2>
+                        Optimization Engine
+                    </h2>
+
+                    <p>
+                        NSGA-II optimization will be connected
+                        after the planning and analysis modules.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RESULTS
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-results"
+                data-page-content="results"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            OUTPUT
+                        </p>
+
+                        <h1>
+                            Results
+                        </h1>
+
+                        <p>
+                            View the final building planning results.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        📊
+                    </div>
+
+                    <h2>
+                        Project Results
+                    </h2>
+
+                    <p>
+                        Results will appear after the planning
+                        and analysis workflow is completed.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 REPORTS
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-reports"
+                data-page-content="reports"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            OUTPUT
+                        </p>
+
+                        <h1>
+                            Reports
+                        </h1>
+
+                        <p>
+                            Generate project reports and documentation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        📄
+                    </div>
+
+                    <h2>
+                        Project Reports
+                    </h2>
+
+                    <p>
+                        Reports will be generated from the
+                        final project results.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SAVED PROJECTS
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-saved-projects"
+                data-page-content="saved-projects"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            PROJECT
+                        </p>
+
+                        <h1>
+                            Saved Projects
+                        </h1>
+
+                        <p>
+                            Your building projects will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        ▣
+                    </div>
+
+                    <h2>
+                        No Projects Yet
+                    </h2>
+
+                    <p>
+                        Create your first PlanWise AI project
+                        to see it here.
+                    </p>
+
+
+                    <button
+                        class="primary-button"
+                        type="button"
+                        data-go-to="project-input"
+                    >
+                        + Create Project
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SETTINGS
+                 ================================================= -->
+
+            <section
+                class="page"
+                id="page-settings"
+                data-page-content="settings"
+            >
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            SYSTEM
+                        </p>
+
+                        <h1>
+                            Settings
+                        </h1>
+
+                        <p>
+                            Application preferences and project
+                            settings.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-page-card">
+
+                    <div class="empty-icon">
+                        ⚙
+                    </div>
+
+                    <h2>
+                        Settings
+                    </h2>
+
+                    <p>
+                        Application settings will be added later.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FOOTER
+             ===================================================== -->
+
+        <footer class="app-footer">
+
+            <span>
+                PlanWise AI
+            </span>
+
+            <span>
+                Smart Building Planning Platform
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     MOBILE SIDEBAR OVERLAY
+     ===================================================== -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
