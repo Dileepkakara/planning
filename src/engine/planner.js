@@ -120,7 +120,7 @@ function roomOrder(definitions, mode, project, cells) {
     }
   }
 
-  return ordered.map((room) => {
+  const placements = ordered.map((room) => {
     const preference = project.vastu?.enabled ? vastuTarget[room.kind] : null;
     const preferredCells = preference && preference !== "auto"
       ? preferredZoneCells(cells, preference, project)
@@ -130,6 +130,8 @@ function roomOrder(definitions, mode, project, cells) {
       preferredCells: room.preferredCells || preferredCells,
     };
   });
+  if (!project.vastu?.enabled || mode === "ventilation") return placements;
+  return placements.sort((a, b) => Number(Boolean(b.preferredCells)) - Number(Boolean(a.preferredCells)));
 }
 
 function floorIndex(project, mode) {
@@ -284,8 +286,8 @@ function makeFurniture(room) {
   if (kind === "dining") {
     return [
       place("Dining Table", Math.max(inset, (width - 1.35) / 2), Math.max(inset, (height - 0.85) / 2), 1.35, 0.85),
-      place("Chair", inset, inset, 0.38, 0.38),
-      place("Chair", Math.max(inset, width - 0.58), inset, 0.38, 0.38),
+      place("Chair 1", inset, inset, 0.38, 0.38),
+      place("Chair 2", Math.max(inset, width - 0.58), inset, 0.38, 0.38),
     ];
   }
   if (kind === "toilet") {
@@ -295,7 +297,6 @@ function makeFurniture(room) {
     ];
   }
   if (kind === "pooja") return [place("Pooja Unit", inset, inset, 0.65, 0.5)];
-  if (kind === "staircase") return [place("Stair Flight", inset, inset, width - inset * 2, height - inset * 2)];
   return [];
 }
 
@@ -679,12 +680,14 @@ export function generateFloorPlan(project, floor = "G", mode = "balanced") {
       builtArea: bounds.building.width * bounds.building.height,
     },
     warnings: [...bounds.warnings],
+    validationIssues: [],
   };
 
   if (cellWidth < 2.4 || cellHeight < 2.4) {
     plan.warnings.push("Some generated room cells are smaller than the prototype minimum-room heuristic.");
   }
-  plan.warnings.push(...validateFloorPlan(plan));
+  plan.validationIssues = validateFloorPlan(plan);
+  plan.warnings.push(...plan.validationIssues);
   return plan;
 }
 

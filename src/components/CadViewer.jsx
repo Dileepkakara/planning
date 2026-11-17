@@ -189,7 +189,7 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
     setSelected(null);
     setWallStart(null);
     setZoom(1);
-  }, [plan.id]);
+  }, [plan]);
 
   const allWalls = useMemo(() => [...plan.walls, ...customWalls], [plan.walls, customWalls]);
   const openings = useMemo(() => [
@@ -210,8 +210,8 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
 
   const selectElement = (event, item, kind) => {
     event.stopPropagation();
-    if ((tool === "door" || tool === "window" || tool === "wall") &&
-        (kind === "room" || kind === "wall")) {
+    if (["door", "window", "wall"].includes(tool) &&
+        ["room", "wall", "door", "window"].includes(kind)) {
       handleCanvasClick(event);
       return;
     }
@@ -254,11 +254,16 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
     }
 
     const nearest = closestWall(point, allWalls);
-    if (!nearest || nearest.distance > 1.4) {
-      setNotice(`Click within 1.4 m of a wall to place a ${tool}.`);
+    if (!nearest || nearest.distance > 0.4) {
+      setNotice(`Click within 0.4 m of a wall to place a ${tool}.`);
       return;
     }
     const width = tool === "door" ? 0.85 : 1.2;
+    const wallLength = Math.hypot(nearest.wall.x2 - nearest.wall.x1, nearest.wall.y2 - nearest.wall.y1);
+    if (nearest.t * wallLength < width / 2 || (1 - nearest.t) * wallLength < width / 2) {
+      setNotice(`Placement rejected: the ${tool} does not fit within this wall segment.`);
+      return;
+    }
     const orientation = Math.abs(nearest.wall.y2 - nearest.wall.y1) < 0.001 ? "horizontal" : "vertical";
     const candidate = {
       id: `custom-${tool}-${Date.now()}`,
@@ -284,35 +289,72 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
     setNotice(`${tool === "door" ? "Door" : "Window"} placed on ${candidate.roomId}'s wall.`);
   };
 
-  const handleWheel = (event) => {
-    if (!event.ctrlKey && !event.metaKey) return;
-    event.preventDefault();
-    setZoom((current) => Math.min(2.5, Math.max(0.55, current + (event.deltaY < 0 ? 0.1 : -0.1))));
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return undefined;
+    const handleWheel = (event) => {
+      if (!event.ctrlKey && !event.metaKey) return;
+      event.preventDefault();
+      setZoom((current) => Math.min(2.5, Math.max(0.55, current + (event.deltaY < 0 ? 0.1 : -0.1))));
+    };
+    svg.addEventListener("wheel", handleWheel, { passive: false });
+    return () => svg.removeEventListener("wheel", handleWheel);
+  }, []);
+
+  const serializeSvg = () => {
+    const styles = `
+      .svg-plot-boundary{fill:none;stroke:#485563;stroke-width:.055}
+      .svg-building-boundary{fill:none;stroke:#a4afb9;stroke-width:.045;stroke-dasharray:.25 .18}
+      .svg-room rect{fill:#fff;stroke:none}
+      .svg-room.is-selected rect{fill:#d6eaff}
+      .svg-wall{stroke:#20262c;stroke-width:.115}
+      .svg-wall.external-wall{stroke-width:.21}
+      .svg-wall.internal-wall{stroke-width:.12}
+      .custom-wall{stroke:#d06c43;stroke-dasharray:.12 .1}
+      .svg-room-label text{fill:#20262c;font-family:Arial,sans-serif;paint-order:stroke;stroke:#fff;stroke-width:.07;stroke-linejoin:round}
+      .svg-room-label text.svg-room-size{fill:#65717d}
+      .furniture-item,.furniture-bed,.furniture-chair{fill:#fff;stroke:#596570;stroke-width:.055}
+      .svg-stairs line{stroke:#73879b;stroke-width:.045}
+      .svg-parking-area rect{fill:none;stroke:#596570;stroke-width:.07;stroke-dasharray:.18 .12}
+      .svg-car rect{fill:#fff;stroke:#3f4a54;stroke-width:.07}
+      .svg-dimension line{stroke:#89939d;stroke-width:.035}
+      .svg-dimension text,.svg-area-label,.svg-road text{fill:#4f5963;font-family:Arial,sans-serif}
+      .svg-road rect{fill:#f0f2f4;stroke:#c6cdd3;stroke-width:.04}
+    `;
+    return new XMLSerializer()
+      .serializeToString(svgRef.current)
+      .replace("<defs>", `<defs><style><![CDATA[${styles}]]></style>`);
   };
 
   const downloadSvg = () => {
     if (!svgRef.current) return;
-    const markup = new XMLSerializer().serializeToString(svgRef.current);
+    const markup = serializeSvg();
     const blob = new Blob([markup], { type: "image/svg+xml;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
     anchor.download = `${project.projectName || "planwise-plan"}-${floor}.svg`;
     anchor.click();
-    URL.revokeObjectURL(url);
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const downloadPng = () => {
     if (!svgRef.current) return;
-    const markup = new XMLSerializer().serializeToString(svgRef.current);
+    const markup = serializeSvg();
     const blob = new Blob([markup], { type: "image/svg+xml;charset=utf-8" });
     const url = URL.createObjectURL(blob);
+    const viewBox = svgRef.current.viewBox.baseVal;
     const image = new Image();
     image.onload = () => {
       const canvas = document.createElement("canvas");
       canvas.width = 1800;
-      canvas.height = Math.round(1800 * plan.plot.height / plan.plot.width);
+      canvas.height = Math.round(canvas.width * viewBox.height / viewBox.width);
       const context = canvas.getContext("2d");
+      if (!context) {
+        URL.revokeObjectURL(url);
+        setNotice("PNG export failed: the browser could not create a drawing context.");
+        return;
+      }
       context.fillStyle = "#fff";
       context.fillRect(0, 0, canvas.width, canvas.height);
       context.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -327,7 +369,7 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
         anchor.href = pngUrl;
         anchor.download = `${project.projectName || "planwise-plan"}-${floor}.png`;
         anchor.click();
-        URL.revokeObjectURL(pngUrl);
+        window.setTimeout(() => URL.revokeObjectURL(pngUrl), 1000);
       });
     };
     image.onerror = () => {
@@ -394,7 +436,7 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
             </button>
           ))}
         </div>
-        <div className="cad-canvas-scroll" onWheel={handleWheel}>
+        <div className="cad-canvas-scroll">
           <svg
             ref={svgRef}
             className="cad-svg"
@@ -468,17 +510,6 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
               </g>
             ))}
 
-            {plan.rooms.map((room) => (
-              <g key={`${room.id}-label`} className="svg-room-label" pointerEvents="none">
-                <text x={room.x + room.width / 2} y={room.y + 0.35} textAnchor="middle" fontSize="0.28">{room.name.toUpperCase()}</text>
-                {dimensionsVisible && (
-                  <text x={room.x + room.width / 2} y={room.y + 0.62} textAnchor="middle" fontSize="0.22" className="svg-room-size">
-                    {`${formatDimension(number(room.width), dimensionUnit)} × ${formatDimension(number(room.height), dimensionUnit)}`}
-                  </text>
-                )}
-              </g>
-            ))}
-
             {openings.map((item) => (
               <Opening
                 key={item.id}
@@ -493,6 +524,25 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
               <line key={wall.id} x1={wall.x1} y1={wall.y1} x2={wall.x2} y2={wall.y2} className="svg-wall custom-wall" onClick={(event) => selectElement(event, wall, "wall")} />
             ))}
 
+            {plan.rooms.map((room) => {
+              const hasTopDoor = openings.some((door) =>
+                (door.roomId === room.id || door.connectsTo === room.id) &&
+                door.orientation === "horizontal" &&
+                Math.abs(door.y - room.y) < 0.05,
+              );
+              const labelY = room.y + (hasTopDoor ? 0.82 : 0.35);
+              return (
+                <g key={`${room.id}-label`} className="svg-room-label" pointerEvents="none">
+                  <text x={room.x + room.width / 2} y={labelY} textAnchor="middle" fontSize="0.28">{room.name.toUpperCase()}</text>
+                  {dimensionsVisible && (
+                    <text x={room.x + room.width / 2} y={labelY + 0.27} textAnchor="middle" fontSize="0.22" className="svg-room-size">
+                      {`${formatDimension(number(room.width), dimensionUnit)} × ${formatDimension(number(room.height), dimensionUnit)}`}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+
             <Dimension x1={0} y1={-0.65} x2={plot.width} y2={-0.65} label={formatDimension(plot.width, dimensionUnit)} />
             <Dimension x1={-0.72} y1={0} x2={-0.72} y2={plot.height} label={formatDimension(plot.height, dimensionUnit)} vertical />
             <NorthArrow direction={project.orientation.northDirection} plot={plot} />
@@ -503,7 +553,7 @@ export default function CadViewer({ plan, project, floor, floors, onFloorChange,
           </svg>
         </div>
         <div className="cad-status">
-          <span><i className="status-dot" /> Geometry validated</span>
+          <span><i className={`status-dot ${plan.validationIssues.length ? "validation-error" : ""}`} /> {plan.validationIssues.length ? "Validation issues" : "Geometry validated"}</span>
           <span>{plan.rooms.length} rooms</span>
           <span>{plan.doors.length + customDoors.length} doors</span>
           <span>{plan.windows.length + customWindows.length} windows</span>

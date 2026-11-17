@@ -343,6 +343,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .cad-status { display: flex; min-height: 34px; flex-wrap: wrap; align-items: center; gap: 14px; padding: 7px 13px; border-top: 1px solid #e2e8ee; color: #8391a0; background: white; font-size: 8px; }
 .cad-status span:first-child { display: inline-flex; align-items: center; gap: 6px; }
 .cad-status .status-dot { width: 6px; height: 6px; }
+.cad-status .status-dot.validation-error { background: #d76658; box-shadow: 0 0 0 3px rgba(215, 102, 88, .12); }
 .cad-notice { padding: 8px 12px; border-top: 1px solid #e5edf5; color: #53738f; background: #f5f9fd; font-size: 9px; }
 .plan-warnings { padding: 8px 12px; border-top: 1px solid #f0dfc8; color: #946a37; background: #fffaf3; font-size: 9px; }
 .plan-warnings summary { cursor: pointer; font-weight: 700; }
